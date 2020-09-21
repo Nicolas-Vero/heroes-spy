@@ -1,0 +1,26 @@
+const Images = {
+    group_6519: require('../res/icons/Group-6519.png'),
+    icon_lock_close: require('../res/icons/Icon-Lock-close.png'),
+    mobile_phone: require('../res/icons/mobile-phone.png'),
+    mail: require('../res/icons/mail.png'),
+    group_2: require('../res/icons/Group-2.png'),
+    tick: require('../res/icons/tick.png'),
+    group_6645: require('../res/icons/Group-6645.png'),
+    notification: require('../res/icons/notification.png'),
+    group_6408: require('../res/icons/Group-6408.png'),
+    repeat_grid_2: require('../res/icons/Repeat-Grid-2.png'),
+    back_arrow: require('../res/icons/left-arrow.png'),
+    delete: require('../res/icons/delete.png'),
+    calendar_copie_3: require('../res/icons/calendar-copie-3.png'),
+    left_arrow: require('../res/icons/Path-850.png'),
+    right_arrow: require('../res/icons/Path-849.png'),
+    search: require('../res/icons/search.png'),
+    settings: require('../res/icons/settings.png'),
+    home: require('../res/icons/home.png'),
+    go: require('../res/icons/go.png'),
+    location: require('../res/icons/placeholder.png'),
+    clock: require('../res/icons/clock.png'),
+    location_2: require('../res/icons/Group-6839.png'),
+};
+
+export default Images;
