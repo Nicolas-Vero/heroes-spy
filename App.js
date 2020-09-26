@@ -13,16 +13,18 @@ import SignInScreen from './src/Screens/SignInScreen';
 import ShopScreen from './src/Screens/ShopScreen';
 import SignUpScreen from './src/Screens/SignUpScreen';
 import ProfileScreen from './src/Screens/ProfileScreen';
+import ResultSearchScreen from './src/Screens/ResultSearchScreen';
 const navigator = createSwitchNavigator(
   { 
     login: createStackNavigator({
-      Signup: SignUpScreen,
-      Signin: SignInScreen
+      Inscription: SignUpScreen,
+      Connexion: SignInScreen
     }),
    
     mainBottom: createBottomTabNavigator({
       Influencers: createStackNavigator({
-        ResultScreen: ResultScreen,
+        Influenceurs: ResultScreen,
+        InfluenceursRecherche: ResultSearchScreen,
         Show: ShowList,
         Shops: ShopScreen,
         Profile: ProfileScreen

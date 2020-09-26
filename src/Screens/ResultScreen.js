@@ -1,16 +1,18 @@
 import React,{ useState, useEffect} from 'react';
 import { StyleSheet, Text, View, ActivityIndicator, FlatList,TouchableOpacity,Image } from 'react-native';
-import { ListItem } from 'react-native-elements';
 import axios from 'axios'; 
 import InfluencerDetail from '../components/InfluencerDetail';
 import {SafeAreaView, withNavigation} from 'react-navigation';
+import SearchBar from '../components/SearchBar';
+
 const ResultScreen = ({navigation}) => {  
-  
+  //const[searchApi,searchResults,errorMessage]= useResults(); 
   const[results,setresults]=useState();
+  const[term, setTerm]= useState('');
   const[isLoaded, setIsLoaded]= useState(false);
   const InfluenceList = async ()=> {
-    try{
 
+    try{
       const response = await axios.get('http://heroespy.herokuapp.com/api/v1/influencers')
       .then(res => {
         setresults(res.data.influencers);
@@ -25,21 +27,28 @@ const ResultScreen = ({navigation}) => {
   useEffect(()=>{
     InfluenceList();
   },[])
-  
+ // console.log('searchResults',searchResults);
   if(!isLoaded){
    
     return (
-      <SafeAreaView style={[styles.container, styles.horizontal]} forceInset={{top: 'always'}}>
 
-      <ActivityIndicator size="large" color="#696969" /> 
+
+            <View style={[styles.Activitycontainer, styles.horizontal]}>
+            <ActivityIndicator size="large" color="#696969" /> 
+            </View>
      
-      </SafeAreaView>
+     
       ) 
     }
     else {
       return (
-
         <View >
+          <SearchBar 
+                    term={term} 
+                    onTermChange={setTerm}
+                    onTermSubmit={()=>{
+                     navigation.navigate('InfluenceursRecherche',{term:term})}}
+                    />     
              <FlatList
           data={results}
           keyExtractor={result =>result.id.toString()}
@@ -66,6 +75,10 @@ const ResultScreen = ({navigation}) => {
             padding:5,
             marginLeft: 5,
             marginRight: 5
+          },
+          Activitycontainer: {
+            flex: 1,
+            justifyContent: "center"
           },
             itemButton: {
               height: 32,

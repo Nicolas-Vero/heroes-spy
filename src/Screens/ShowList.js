@@ -1,6 +1,7 @@
 import React,{useContexts, useState,useEffect}from 'react';
 import {View,Text,StyleSheet,FlatList, Button, TouchableOpacity,ActivityIndicator} from 'react-native';
 import axios from 'axios'; 
+import { disableExpoCliLogging } from 'expo/build/logs/Logs';
 const ShowList = ({navigation})=>{
     const[results,setresults]=useState();
     const[isLoaded, setIsLoaded]= useState(false);
@@ -11,6 +12,7 @@ const ShowList = ({navigation})=>{
        
       const response = await axios.get('http://heroespy.herokuapp.com/api/v1/influencers/'+influencer.id)
       .then(res => {
+        console.log('AAaaaazADDDDDDDDDDDDDDDDD',res.data);
         setresults(res.data);
         setIsLoaded(true);
     
@@ -26,8 +28,8 @@ const ShowList = ({navigation})=>{
  
     if(!isLoaded){
         return (
-          <View style={[styles.container, styles.horizontal]}>
-          <ActivityIndicator size="large" color="#0000ff" /> 
+          <View style={[styles.Activitycontainer, styles.horizontal]}>
+          <ActivityIndicator size="large" color="#696969" /> 
           </View>
           ) 
         }
@@ -36,7 +38,7 @@ const ShowList = ({navigation})=>{
   console.log(results.placements.length);
   
           return  (<View >
-            <FlatList
+            {/* <FlatList
          data={results.placements}
          keyExtractor={result =>result.id.toString()}
          renderItem={({item}) =>{
@@ -45,21 +47,16 @@ const ShowList = ({navigation})=>{
         <Text>{item.id}</Text>
         </View>
        )}}           
-       /> 
+       />  */}
        </View>)
         }
 }
 
 const styles = StyleSheet.create({
 
-    container:{
-      borderWidth: 1,
-      borderColor : 'black',
-      borderRadius :10,
-      marginBottom:3,
-      padding:5,
-      marginLeft: 5,
-      marginRight: 5
-    },})
+  Activitycontainer: {
+    flex: 1,
+    justifyContent: "center"
+  }})
 
 export default ShowList;

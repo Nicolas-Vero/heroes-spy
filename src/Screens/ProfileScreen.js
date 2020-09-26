@@ -1,26 +1,31 @@
-import React, { useContext } from 'react';
-import { View, StyleSheet, Text,SafeAreaView } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { View, StyleSheet, Text,SafeAreaView, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import Spacer from '../components/Spacer';
-import  axios from 'axios'
-import AsyncStorage from '@react-native-community/async-storage';
-import { STORAGE } from '../configs/Constant';
-import { getData } from '../configs/Global';
+import { Info, Sign_out } from '../components/Request';
+import Color from '../lib/Color';
 
 const ProfileScreen = ({navigation}) => {
-    const header= getData();
-  
+   const [result, setResult]= useState();
+   const[isLoaded, setIsLoaded]= useState(false);
+
+   useEffect(()=>{
+    Info().then(res => {
+       setResult(res['uid']);
+       console.log(result);
+        setIsLoaded(true);});;
+  },[])
+
   return (
     <SafeAreaView forceInset={{top: 'always'}}>
-      <Text style={{ fontSize: 48 }}>ProfileScreen</Text>
+      <Image
+                style={styles.itemImage}
+                source={require('../../src/res/images/profile-image.png')}
+              /> 
+      <Text style={{ fontSize: 48 }}>bonjour {result}</Text>
       <Spacer>
         <Button title="Sign Out" onPress={()=>{
-         
-             axios({
-                method :'DELETE',
-                url:'https://heroespy.herokuapp.com/api/v1/auth/sign_out',
-                headers:header
-            }).then(navigation.navigate('Signin')) 
+         Sign_out().then(navigation.navigate('Connexion')) 
         } }
             />
       </Spacer>
@@ -28,6 +33,14 @@ const ProfileScreen = ({navigation}) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  itemImage: {
+    width: 80,
+    height: 80,
+    borderWidth: 4,
+    borderRadius: 33,
+    borderColor: Color.Primary,
+  }
+});
 
 export default ProfileScreen;

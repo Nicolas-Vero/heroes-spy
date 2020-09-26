@@ -28,7 +28,7 @@ const ShopScreen = () => {
     if(!isLoaded){
         return (
        
-          <View style={[styles.container, styles.horizontal]}>
+          <View style={[styles.Activitycontainer, styles.horizontal]}>
           <ActivityIndicator size="large" color="#696969" /> 
           </View>
 
@@ -55,5 +55,8 @@ const ShopScreen = () => {
 export default ShopScreen;
 
 const styles = StyleSheet.create({
-
+  Activitycontainer: {
+    flex: 1,
+    justifyContent: "center"
+  }
 });

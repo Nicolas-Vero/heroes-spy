@@ -25,8 +25,8 @@ const ShopDetails = ({shop,navigation}) => {
             <View style={{flex: 1, alignItems:'center' }}>
               <Text style={{fontSize: 17, color: Color.SecondaryText,  fontWeight: "bold"}}>{shop.name}</Text>
               <Text style={{fontSize: 12, color: Color.Primary}}>{shop.shop_url}</Text>
-              <Text style={{fontSize: 8, color: '#707070'}}>{shop.country}|{shop.placement_count } placement</Text>
-              <Text style={{fontSize: 8, color: '#707070'}}>{shop.placement_count}</Text>
+              <Text style={{fontSize: 8, color: '#707070'}}>{shop.last_country}|{shop.placement_count } placement</Text>
+              {/* <Text style={{fontSize: 8, color: '#707070'}}>{shop.placement_count}</Text> */}
               <View>
             <Text style={{fontSize: 9, color: Color.SecondaryText,  fontWeight: "bold"}}>{shop.shop_description}</Text>
             </View>

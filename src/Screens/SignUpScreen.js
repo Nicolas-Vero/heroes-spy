@@ -34,7 +34,7 @@ return (
       
           }).catch(error => {console.log(error.message)});
       }}/>
-      <NavLink routeName='Signin' text= 'already a account?'/>
+      <NavLink routeName='Connexion' text= 'déjà un compte?'/>
 </View>
 
 );}

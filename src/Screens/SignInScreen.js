@@ -43,14 +43,14 @@ const SignUpScreen =  ({navigation}) =>{
      
     })
     .then(()=>{
-      navigation.navigate('ResultScreen');
+      navigation.navigate('Influenceurs');
       
    });},[]);
 return (
   <View style={Styles.container}>
 <Text style={Styles.label}>Email</Text>
 <Input autoCapitalize='none'style={Styles.input} value={email} onChangeText={text=>setEmail(text)}/>
-<Text style={Styles.label} >Password</Text>
+<Text style={Styles.label} >Mot de passe</Text>
 <Input autoCapitalize='none' style={Styles.input} value={password} onChangeText={text=>setPassword(text)}/>
 <Button title ="Login" onPress={()=>{
  Axios.post('https://heroespy.herokuapp.com/api/v1/auth/sign_in',{
@@ -86,7 +86,7 @@ return (
     })
      .catch(error => {console.log(error.message)});
 }}/>
- <NavLink routeName='Signup' text= 'dont have account?'/>
+ <NavLink routeName='Signup' text= 'pas encore de compte?'/>
 </View>
 
 );}
