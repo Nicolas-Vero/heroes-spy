@@ -27,7 +27,7 @@ const ResultScreen = ({ navigation }) => {
   useEffect(() => {
     InfluenceList();
   }, [])
-  
+
   if (!isLoaded) {
 
     return (
@@ -47,7 +47,9 @@ const ResultScreen = ({ navigation }) => {
           term={term}
           onTermChange={setTerm}
           onTermSubmit={() => {
-            navigation.navigate('InfluenceursRecherche', { term: term })
+            if (!term) {
+              navigation.navigate('InfluenceursRecherche', { term: term })
+            }
           }}
         />
         <FlatList

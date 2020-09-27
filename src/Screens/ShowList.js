@@ -27,11 +27,11 @@ const PlacementsList = ({ navigation }) => {
     datasets: [
       {
         data: [20, 45, 28, 80, 99, 43],
-        color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-        strokeWidth: 2 // optional
+        color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, 
+        strokeWidth: 2 
       }
     ],
-    legend: ["statistique"] // optional
+    legend: ["statistiques"]
   };
 
 
@@ -119,7 +119,7 @@ const PlacementsList = ({ navigation }) => {
               backgroundColor: "#ffffff",
               backgroundGradientFrom: "#fafafa",
               backgroundGradientTo: "#f6f6f6",
-              decimalPlaces: 2, // optional, defaults to 2dp
+              decimalPlaces: 2, 
               color: (opacity = 1) => `rgba(125, 125, 125, ${opacity})`,
               labelColor: (opacity = 1) => `rgba(125, 125, 125, ${opacity})`,
               style: {

@@ -39,13 +39,15 @@ const ShopScreen = ({ navigation }) => {
     )
   }
   else {
-    
+
     return (< >
       <SearchBar
         term={term}
         onTermChange={setTerm}
         onTermSubmit={() => {
-          navigation.navigate('ShopsRecherche', { term: term })
+          if (!term) {
+            navigation.navigate('InfluenceursRecherche', { term: term })
+          }
         }}
       />
       <FlatList
