@@ -1,9 +1,9 @@
-import React, { useState, useContext, useEffect} from 'react';
-import {View, StyleSheet,TouchableOpacity, ActivityIndicator} from 'react-native';
-import {Text, Button, Input} from 'react-native-elements';
+import React, { useState, useContext, useEffect } from 'react';
+import { View, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { Text, Button, Input } from 'react-native-elements';
 import axios from 'axios'
 import AsyncStorage from '@react-native-community/async-storage';
-import {STORAGE} from '../configs/Constant'
+import { STORAGE } from '../configs/Constant'
 import { getData } from '../configs/Global';
 import { LogBox } from 'react-native';
 import { ShopRequest } from '../components/Request';
@@ -12,52 +12,55 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ShopDetail from '../components/ShopDetail';
 import SearchBar from '../components/SearchBar';
 
-const ShopScreen = ({navigation}) => {
-    const[results,setresults]=useState();
-    const[isLoaded, setIsLoaded]= useState(false);
-    const[term, setTerm]= useState('');
+const ShopScreen = ({ navigation }) => {
+  const [results, setresults] = useState();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [term, setTerm] = useState('');
 
-    try {
-    useEffect(()=>{
+  try {
+    useEffect(() => {
       ShopRequest().then(res => {
-          setresults(res.data.shops);
-          setIsLoaded(true);});;
-    },[])
-  
-        
-    } catch (error) {
-        console.log(error.message); 
-    }
-    if(!isLoaded){
-        return (
-       
-          <View style={[styles.Activitycontainer, styles.horizontal]}>
-          <ActivityIndicator size="large" color="#696969" /> 
-          </View>
+        setresults(res.data.shops);
+        setIsLoaded(true);
+      });;
+    }, [])
 
-          ) 
-        }
-        else {
-            console.log(results);
-          return  (< >
-          <SearchBar 
-                    term={term} 
-                    onTermChange={setTerm}
-                    onTermSubmit={()=>{
-                     navigation.navigate('ShopsRecherche',{term:term})}}
-                    />     
-            <FlatList
-         data={results}
-         keyExtractor={result =>result.id}
-         renderItem={({item}) =>{
-       return  (
-        <TouchableOpacity>
-        <ShopDetail shop={item}/>
-        </TouchableOpacity>
-       )}}           
-       /> 
-       </>)
-        }
+
+  } catch (error) {
+    console.log(error.message);
+  }
+  if (!isLoaded) {
+    return (
+
+      <View style={[styles.Activitycontainer, styles.horizontal]}>
+        <ActivityIndicator size="large" color="#696969" />
+      </View>
+
+    )
+  }
+  else {
+    
+    return (< >
+      <SearchBar
+        term={term}
+        onTermChange={setTerm}
+        onTermSubmit={() => {
+          navigation.navigate('ShopsRecherche', { term: term })
+        }}
+      />
+      <FlatList
+        data={results}
+        keyExtractor={result => result.id}
+        renderItem={({ item }) => {
+          return (
+            <TouchableOpacity>
+              <ShopDetail shop={item} />
+            </TouchableOpacity>
+          )
+        }}
+      />
+    </>)
+  }
 };
 
 
