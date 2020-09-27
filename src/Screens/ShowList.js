@@ -97,13 +97,12 @@ console.log(influenceur);
           <View style={styles.container}> 
 
             <FlatList
+            horizontal={true}
               data={results}
               keyExtractor={result =>result.date}
               renderItem={({item}) =>{
                 return  (
                   <View >
-                     {/* <InfluencerDetail influencer={influenceur}/> */}
-                  
                   {item.shop ? <PlacementDetails placement = {item}/>:null}
                  </View>
                   )

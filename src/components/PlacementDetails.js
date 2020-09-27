@@ -21,7 +21,7 @@ const PlacementDetails = ({placement,navigation}) => {
                 source={{uri: placement.shop.logo}}
               />:null} 
               </View>
-            <View style={{flex: 1}}>
+            <View style={{flex: 1,marginLeft:40 }}>
                 
               <Text style={{fontSize: 17, color: Color.SecondaryText,  fontWeight: "bold"}}>{placement.shop.shop_title}</Text>
               <Text style={{fontSize: 12, color: Color.Primary}}>{placement.date}</Text>
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     },
     itemImageContainer: {
       position: 'absolute',
-      left: -wp("10%"),
+      left: wp("0"),
     },
     itemImage: {
       width: 80,
