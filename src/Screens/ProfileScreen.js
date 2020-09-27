@@ -11,6 +11,7 @@ const ProfileScreen = ({ navigation }) => {
 
   useEffect(() => {
     Info().then(res => {
+      console.log(res);
       setResult(res['uid']);
       setIsLoaded(true);
     });;
@@ -20,12 +21,14 @@ const ProfileScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container} forceInset={{ top: 'always' }}>
       <Image
         style={styles.itemImage}
-        source={require('../../src/res/images/profile-image.png')}
+        source={require('../../src/res/images/King_Boo_Normal.png')}
       />
       <Text style={{ fontSize: 48 }}>bonjour {result}</Text>
       <Spacer>
         <Button title="Sign Out" onPress={() => {
-          Sign_out().then(navigation.navigate('Connexion'))
+          Sign_out().then(() => {
+            navigation.navigate('Connexion')
+          })
         }}
         />
       </Spacer>
@@ -37,9 +40,9 @@ const styles = StyleSheet.create({
   itemImage: {
     margin: 30,
     width: 300,
-    height: 300,
+    height: 350,
 
-    borderRadius: 33,
+    borderRadius: 15,
     borderColor: Color.Primary,
   },
   container: {

@@ -45,8 +45,8 @@ const ShopScreen = ({ navigation }) => {
         term={term}
         onTermChange={setTerm}
         onTermSubmit={() => {
-          if (!term) {
-            navigation.navigate('InfluenceursRecherche', { term: term })
+          if (term != '') {
+            navigation.navigate('ShopsRecherche', { term: term })
           }
         }}
       />

@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react';
-import { View, StyleSheet, FlatList, Image, SafeAreaView, TouchableOpacity, ActivityIndicator, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, TextInput } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import Axios from 'axios';
 import NavLink from '../components/Navlink'
-import { NavigationEvents } from 'react-navigation';
 
 const SignUpScreen = ({ navigation }) => {
 
@@ -17,22 +16,23 @@ const SignUpScreen = ({ navigation }) => {
 
         <TextInput placeholder="Email" autoCapitalize='none' style={Styles.loginFormTextInput} value={email} onChangeText={text => setEmail(text)} />
 
-        <TextInput placeholder='Password' autoCapitalize='none' style={Styles.loginFormTextInput} value={password} onChangeText={text => setPassword(text)} />
+        <TextInput secureTextEntry placeholder='Password' autoCapitalize='none' style={Styles.loginFormTextInput} value={password} onChangeText={text => setPassword(text)} />
 
-        <Button style={Styles.loginButton} title="Inscription" onPress={() => {
-          Axios.post('https://heroespy.herokuapp.com/api/v1/auth/', {
-            email: email,
+        <Button style={Styles.loginButton} title ="Subscription" onPress={()=>{
+        Axios.post('https://heroespy.herokuapp.com/api/v1/auth/',{
+            email : email ,
             password: password
 
           })
-            .then(response => {
-              if (response.data.status) {
-                navigation.navigate('ResultScreen');
+          .then(response => {
+            if (response.data.status) {
+              console.log(response.headers);
+             navigation.navigate('Influenceurs');
 
-              }
+            } 
 
-            }).catch(error => { console.log(error.message) });
-        }} />
+          }).catch(error => {console.log(error.message)});
+      }}/>
         <NavLink style={Styles.LoginButton} routeName='Connexion' text='déjà un compte?' />
       </View>
     </View>

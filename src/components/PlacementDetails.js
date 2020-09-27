@@ -3,14 +3,14 @@ import { View, Text, StyleSheet, FlatList, Image, SafeAreaView, TouchableOpacity
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Color from '../lib/Color';
 import moment from 'moment';
-//import localisation from 'moment/locale/fr';
+import localisation from 'moment/locale/fr';
 import { withNavigation } from 'react-navigation';
 
 const PlacementDetails = ({ placement, navigation }) => {
   moment.locale('fr'); 
 
  
-  //console.log(moment(placement.date).locale('fr').format("dddd, MMMM Do YYYY, h:mm:ss a"));
+console.log(moment(placement.date).locale('fr').format("dddd, MMMM Do YYYY, h:mm:ss "));
   return (
 
     <View style={styles.itemTopContainer}>

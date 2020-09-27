@@ -8,7 +8,7 @@ import { withNavigation } from 'react-navigation';
 import { ShopSearchRequest } from './Request';
 
 const ShopDetails = ({ shop, navigation }) => {
-  
+
   return (
 
     <View style={styles.itemTopContainer}>
@@ -19,7 +19,7 @@ const ShopDetails = ({ shop, navigation }) => {
           source={{ uri: shop.logo }}
         /> : null}
         <View style={[styles.itemContentContainer,]}>
-          <TouchableOpacity
+          < TouchableOpacity
             style={styles.itemImageContainer}
             onPress={() => { navigation.navigate('Placements', { item: shop }) }}
           >
@@ -51,7 +51,7 @@ const ShopDetails = ({ shop, navigation }) => {
             <TouchableOpacity
               style={styles.container}
               title='detail'
-              onPress={() => { navigation.navigate('Placements', { item: shop }) }}
+              onPress={() => { }}
             ><Text>details</Text></TouchableOpacity>
 
 

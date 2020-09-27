@@ -47,7 +47,7 @@ const ResultScreen = ({ navigation }) => {
           term={term}
           onTermChange={setTerm}
           onTermSubmit={() => {
-            if (!term) {
+            if (term != '') {
               navigation.navigate('InfluenceursRecherche', { term: term })
             }
           }}

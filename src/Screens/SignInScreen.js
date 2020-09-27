@@ -1,10 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { STORAGE } from '../configs/Constant'
-import { View, StyleSheet, FlatList, Image, SafeAreaView, TouchableOpacity, ActivityIndicator, TextInput } from 'react-native';
-import { Text, Button, Input } from 'react-native-elements';
+import React, { useState } from 'react';
+import { View, StyleSheet, TextInput } from 'react-native';
+import { Text, Button } from 'react-native-elements';
 import Axios from 'axios';
 import NavLink from '../components/Navlink'
-import { NavigationEvents } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 
 
@@ -15,37 +13,38 @@ const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  useEffect(() => {
-    Axios.post('https://heroespy.herokuapp.com/api/v1/auth/sign_in', {
-      email: 'a@a.fr',
-      password: 'azertyuiop'
-    })
-      .then(response => ({
-        data: response.data,
-        headers: {
-          access_token: response.headers['access-token'],
-          token_type: response.headers['token-name'],
-          uid: response.headers['uid'],
-          client: response.headers['client'],
-          expiry: response.headers['expiry'],
-        }
+//for automatic connection uncomment
+  // useEffect(() => {
+  //   Axios.post('https://heroespy.herokuapp.com/api/v1/auth/sign_in', {
+  //     email: 'a@a.fr',
+  //     password: 'azertyuiop'
+  //   })
+  //     .then(response => ({
+  //       data: response.data,
+  //       headers: {
+  //         access_token: response.headers['access-token'],
+  //         token_type: response.headers['token-name'],
+  //         uid: response.headers['uid'],
+  //         client: response.headers['client'],
+  //         expiry: response.headers['expiry'],
+  //       }
 
-      }))
-      .then(async response => {
-        try {
-          const headers = response.headers;
-          const JsonResponse = JSON.stringify(headers)
-          await AsyncStorage.setItem('headers', JsonResponse);
-        } catch (error) {
-          console.log(error.message);
-        }
+  //     }))
+  //     .then(async response => {
+  //       try {
+  //         const headers = response.headers;
+  //         const JsonResponse = JSON.stringify(headers)
+  //         await AsyncStorage.setItem('headers', JsonResponse);
+  //       } catch (error) {
+  //         console.log(error.message);
+  //       }
 
-      })
-      .then(() => {
-        navigation.navigate('Influenceurs');
+  //     })
+  //     .then(() => {
+  //       navigation.navigate('Influenceurs');
 
-      });
-  }, []);
+  //     });
+  // }, []);
   return (
     <View style={Styles.loginScreenContainer}>
       <View style={Styles.loginFormView}>
@@ -54,40 +53,41 @@ const SignUpScreen = ({ navigation }) => {
 
         <TextInput placeholder="Email" autoCapitalize='none' style={Styles.loginFormTextInput} value={email} onChangeText={text => setEmail(text)} />
 
-        <TextInput placeholder='Password' autoCapitalize='none' style={Styles.loginFormTextInput} value={password} onChangeText={text => setPassword(text)} />
+        <TextInput secureTextEntry placeholder='Password' autoCapitalize='none' style={Styles.loginFormTextInput} value={password} onChangeText={text => setPassword(text)} />
 
-        <Button style={Styles.loginButton} title="Connexion" onPress={() => {
-          Axios.post('https://heroespy.herokuapp.com/api/v1/auth/sign_in', {
-            email: email,
-            password: password
-          })
-            .then(response => ({
-              data: response.data,
-              headers: {
-                access_token: response.headers['access-token'],
-                token_type: response.headers['token-name'],
-                uid: response.headers['uid'],
-                client: response.headers['client'],
-                expiry: response.headers['expiry'],
-              }
+        <Button style={Styles.loginButton}  title ="Login" onPress={()=>{
+ Axios.post('https://heroespy.herokuapp.com/api/v1/auth/sign_in',{
+       email : email ,
+       password: password
+     })
+     .then(response => ({ 
+       data :response.data,
+      headers: {
+        access_token: response.headers['access-token'],
+        token_type: response.headers['token-name'],
+        uid: response.headers['uid'],
+        client: response.headers['client'],
+        expiry: response.headers['expiry'],
+      }  
 
-            }))
-            .then(async response => {
-              try {
-                const headers = response.headers;
-                const JsonResponse = JSON.stringify(response.headers)
-                await AsyncStorage.setItem('headers', JsonResponse);
-              } catch (error) {
-                console.log(error.message);
-              }
+     }))
+     .then(async response=>{
+     try {   
+        const  JsonResponse = JSON.stringify(response.headers)
+        await AsyncStorage.setItem('headers',JsonResponse);
+        console.log('json');
+        console.log(JsonResponse);
+     } catch (error) {
+     console.log(error.message);
+     }
 
-            })
-            .then(() => {
-              navigation.navigate('ResultScreen');
+     })
+     .then(()=>{
+       navigation.navigate('Influenceurs');
 
-            })
-            .catch(error => { console.log(error.message) });
-        }} />
+    })
+     .catch(error => {console.log(error.message)});
+}}/>
         <NavLink routeName='Inscription' text='pas encore de compte?' />
       </View>
     </View>
