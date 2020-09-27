@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import Axios from 'axios';
@@ -53,7 +53,7 @@ const SignUpScreen = ({ navigation }) => {
 
         <TextInput placeholder="Email" autoCapitalize='none' style={Styles.loginFormTextInput} value={email} onChangeText={text => setEmail(text)} />
 
-        <TextInput secureTextEntry placeholder='Password' autoCapitalize='none' style={Styles.loginFormTextInput} value={password} onChangeText={text => setPassword(text)} />
+        <TextInput secureTextEntry placeholder='Mot de passe' autoCapitalize='none' style={Styles.loginFormTextInput} value={password} onChangeText={text => setPassword(text)} />
 
         <Button style={Styles.loginButton}  title ="Login" onPress={()=>{
  Axios.post('https://heroespy.herokuapp.com/api/v1/auth/sign_in',{
