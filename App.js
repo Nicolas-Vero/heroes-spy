@@ -14,6 +14,7 @@ import ShopScreen from './src/Screens/ShopScreen';
 import SignUpScreen from './src/Screens/SignUpScreen';
 import ProfileScreen from './src/Screens/ProfileScreen';
 import ResultSearchScreen from './src/Screens/ResultSearchScreen';
+import ResultShopScreen from './src/Screens/ResutlShopsScreen';
 const navigator = createSwitchNavigator(
   { 
     login: createStackNavigator({
@@ -31,6 +32,7 @@ const navigator = createSwitchNavigator(
     }),
     shops: createStackNavigator({
         Shops: ShopScreen,
+        ShopsRecherche:ResultShopScreen
     }),
     profile: createStackNavigator({
       Profile: ProfileScreen

@@ -17,7 +17,7 @@ const ProfileScreen = ({navigation}) => {
   },[])
 
   return (
-    <SafeAreaView forceInset={{top: 'always'}}>
+    <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
       <Image
                 style={styles.itemImage}
                 source={require('../../src/res/images/profile-image.png')}
@@ -35,11 +35,15 @@ const ProfileScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   itemImage: {
-    width: 80,
-    height: 80,
-    borderWidth: 4,
+   margin:30,
+    width: 300,
+    height: 300,
+    
     borderRadius: 33,
     borderColor: Color.Primary,
+  },
+  container:{
+    alignItems: 'center'
   }
 });
 

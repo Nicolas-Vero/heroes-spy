@@ -24,6 +24,21 @@ export const ShopRequest = async () => {
     }) 
   };
 
+  export const ShopSearchRequest = async (term) => {
+    const headers = await getData();
+
+    header = JSON.parse(headers)
+ 
+    return axios({
+      method: 'GET',
+      url: `http://heroespy.herokuapp.com/api/v1/shops`,
+      headers: header,
+      params:{
+        name:term
+      }
+    }) 
+  };
+
   export const Sign_out = async () => {
     const headers = await getData();
 

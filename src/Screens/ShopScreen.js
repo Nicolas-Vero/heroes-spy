@@ -10,17 +10,20 @@ import { ShopRequest } from '../components/Request';
 import { FlatList } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ShopDetail from '../components/ShopDetail';
+import SearchBar from '../components/SearchBar';
 
-const ShopScreen = () => {
+const ShopScreen = ({navigation}) => {
     const[results,setresults]=useState();
     const[isLoaded, setIsLoaded]= useState(false);
-    
+    const[term, setTerm]= useState('');
+
+    try {
     useEffect(()=>{
       ShopRequest().then(res => {
           setresults(res.data.shops);
           setIsLoaded(true);});;
     },[])
-    try {
+  
         
     } catch (error) {
         console.log(error.message); 
@@ -37,6 +40,12 @@ const ShopScreen = () => {
         else {
             console.log(results);
           return  (< >
+          <SearchBar 
+                    term={term} 
+                    onTermChange={setTerm}
+                    onTermSubmit={()=>{
+                     navigation.navigate('ShopsRecherche',{term:term})}}
+                    />     
             <FlatList
          data={results}
          keyExtractor={result =>result.id}

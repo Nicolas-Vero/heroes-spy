@@ -5,22 +5,26 @@ import Color from '../lib/Color';
 import * as Progress from 'react-native-progress';
 import { AntDesign } from '@expo/vector-icons'; 
 import {withNavigation} from 'react-navigation';
+import { ShopSearchRequest } from './Request';
 
 const ShopDetails = ({shop,navigation}) => { 
-  
+  console.log('pppppppp',shop.logo);
     return(
 
       <View style={styles.itemTopContainer}>
+  
         <View style={styles.itemSubContainer}>
+        {shop.logo ? <Image
+                style={styles.itemImage}
+                source={{uri: shop.logo}}
+              />: null }
           <View style={[styles.itemContentContainer,]}>
             <TouchableOpacity
               style={styles.itemImageContainer}
               onPress={()=>{navigation.navigate('Show',{item:shop })}}
             >
-              {/* <Image
-                style={styles.itemImage}
-                source={{uri: shop.logo}}
-              /> */}
+             
+              
             </TouchableOpacity>
             <View style={{flex: 1, alignItems:'center' }}>
               <Text style={{fontSize: 17, color: Color.SecondaryText,  fontWeight: "bold"}}>{shop.name}</Text>
@@ -30,8 +34,9 @@ const ShopDetails = ({shop,navigation}) => {
               <View>
             <Text style={{fontSize: 9, color: Color.SecondaryText,  fontWeight: "bold"}}>{shop.shop_description}</Text>
             </View>
+            
             </View>
-           
+          
             <TouchableOpacity style={{justifyContent: "center", alignItems: "center", marginHorizontal: 5,}}
                               onPress={()=>{navigation.navigate('Show',{item:shop })}}>
           
@@ -110,6 +115,7 @@ const styles = StyleSheet.create({
     
     },
     itemSubContainer: {
+      alignItems: "center",
       paddingHorizontal: 20,
       paddingVertical: 10,
       width: wp("85%"),
