@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 240,
+    height: 250,
     marginTop: 15,
 
   },
@@ -125,7 +125,9 @@ const styles = StyleSheet.create({
   itemContentContainer: {
     flex: 1,
     flexDirection: 'row',
+    justifyContent:'center',
     justifyContent: 'space-between',
+    marginRight:30,
     alignItems: 'center',
     position: "relative",
     paddingLeft: wp("10%")
